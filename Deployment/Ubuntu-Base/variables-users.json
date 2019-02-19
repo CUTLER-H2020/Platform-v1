@@ -1,0 +1,7 @@
+{
+	"system_user": "user",
+	"system_pwd": "password",
+	
+	"esxi_username": "user",
+	"esxi_password": "password"
+}

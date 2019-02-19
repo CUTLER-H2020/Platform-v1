@@ -1,0 +1,13 @@
+{
+	"esxi_host": "<IP ADDR>",
+	"remote_type": "esx5",
+	"esxi_datastore": "<string>",
+	
+	"vm_disk_adapter_type": "scsi",
+	"vm_disk_size": "73728",
+	"disk_type_id": "thin",
+	"vm_guest_os_type": "ubuntu-64",
+	"vm_memory": "2048",
+	"vm_vcpu": "2",
+	"vm_network": "VM Network"
+}

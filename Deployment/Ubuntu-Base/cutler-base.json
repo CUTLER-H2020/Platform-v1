@@ -1,0 +1,127 @@
+{
+    "description": "Packer template for building vagrant box of ubuntu bionic 18 Server",
+
+    "builders": [{
+        "type": "vmware-iso",
+        "guest_os_type": "{{ user `guest_os_type` }}",
+
+        "output_directory": "{{ user `output_directory` }}/ubuntu",
+
+        "iso_urls": [
+            "{{ user `iso_url` }}",
+            "http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.1-server-amd64.iso"
+    
+        ],
+        "iso_checksum": "{{ user `iso_checksum` }}",
+        "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+		
+		
+		"floppy_files": [
+		  "preseed/preseed_ubuntu1804.cfg"
+		],
+
+        
+		"ssh_username": "{{ user `system_user` }}",
+        "ssh_password": "{{ user `system_pwd` }}",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "15000s",
+
+		"disk_adapter_type": "{{ user `vm_disk_adapter_type` }}",
+		"disk_size": "{{ user `vm_disk_size` }}",
+		"disk_type_id": "{{ user `disk_type_id` }}",
+
+		"remote_host": "{{user `esxi_host`}}",
+		"remote_type": "{{user `remote_type`}}",
+		"remote_datastore": "{{user `esxi_datastore`}}",
+		"remote_username": "{{user `esxi_username`}}",
+		"remote_password": "{{user `esxi_password`}}",
+
+		"vmx_data": {
+			"memsize": "{{ user `vm_memory` }}",
+			"numvcpus": "{{ user `vm_vcpu` }}",
+
+			"ethernet0.networkName": "{{ user `vm_network` }}",
+			"ethernet0.present": "TRUE",
+			"ethernet0.startConnected": "TRUE",
+			"ethernet0.virtualDev": "vmxnet3",
+			"ethernet0.addressType": "generated",
+			"ethernet0.wakeOnPcktRcv": "FALSE"
+		},
+        "vm_name": "cutler-ubuntu-base",
+		"keep_registered": "{{user `keep_registered`}}",
+		"skip_export": "{{user `skip_export`}}",
+        "headless": "{{user `headless`}}",
+
+        "boot_wait": "8s",
+        "boot_command": [
+            "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+            "/install/vmlinuz<wait>",
+            " auto<wait>",
+            " console-setup/ask_detect=false<wait>",
+            " console-setup/layoutcode=uk<wait>",
+            " console-setup/modelcode=pc105<wait>",
+            " debconf/frontend=noninteractive<wait>",
+            " debian-installer=en_GB<wait>",
+            " fb=false<wait>",
+            " initrd=/install/initrd.gz<wait>",
+            " kbd-chooser/method=us<wait>",
+            " keyboard-configuration/layout=UK<wait>",
+            " keyboard-configuration/variant=UK<wait>",
+            " locale=en_GB<wait>",
+            " netcfg/get_domain=vm<wait>",
+            " netcfg/get_hostname=vagrant<wait>",
+            " grub-installer/bootdev=/dev/sda<wait>",
+			" preseed/file=/floppy/preseed_ubuntu1804.cfg ",
+            " -- <wait>",
+            "<enter><wait>"
+        ],
+        "shutdown_command": "echo '{{ user `system_pwd` }}'|sudo -S shutdown -P now"
+    }],
+
+	"provisioners": [
+	{
+		"type": "shell",
+		"inline": [
+		  "sleep 30"
+		]
+	},
+	{
+		"type": "shell",
+		"scripts": [
+			"scripts/open-vm-tools.sh"
+		],
+
+		"execute_command": "echo '{{ user `system_pwd` }}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    },
+	{
+		"type": "shell",
+		"inline": [
+			"sudo apt-get update",
+			"yes | sudo apt-get upgrade",
+			"yes | sudo apt-get dist-upgrade",
+			"sudo apt-get install net-tools",
+			"yes | sudo apt-get install default-jdk",
+			"yes | sudo apt-get install python3-pip",
+			"yes | sudo apt-get install python3-pandas",
+			"yes | sudo apt-get install python3-bs4",
+			"yes | sudo apt-get install python3-dateutil",
+			"yes | sudo apt-get install python3-requests",
+			"sudo apt-get install openjdk-11-jdk-headless",
+			"yes | sudo ufw enable",
+			"sudo ufw default deny incoming",
+			"sudo ufw default allow outgoing",
+			"sudo ufw allow 22",
+			"sudo ufw allow 80",
+			"sudo ufw allow 443",
+			"sudo ufw allow 21/tcp",
+			"yes | sudo apt-get install nmap",
+			"mkdir ~/Downloads",
+			"yes | sudo apt-get install xubuntu-desktop"
+		],
+		"execute_command": "echo '{{ user `system_pwd` }}' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
+	}
+	]
+}

@@ -1,0 +1,11 @@
+{
+	"vm_description": "Ubuntu AMD64 Bionic 18 Server",
+	"iso_url": "ISO/ubuntu-18.04.1-desktop-amd64.iso",
+	"iso_checksum": "e8264fa4c417216f4304079bd94f895e",
+	"iso_checksum_type": "md5",
+	"guest_os_type": "ubuntu-64",
+	"vm_version": "1.0.0",
+	"keep_registered": "true",
+	"skip_export": "true",
+	"headless": "false"
+}
