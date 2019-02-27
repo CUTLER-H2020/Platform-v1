@@ -25,8 +25,8 @@ cutler-hadoop-nn
 **/etc/hosts
 (delete localhost line)**
 
-x.x.x.x CUTLER-Hadoop-NN
-x.x.x.x CUTLER-Hadoop-RM
-x.x.x.x CUTLER-Hadoop-DN1
-x.x.x.x CUTLER-Hadoop-DN2
+x.x.x.x CUTLER-Hadoop-NN\
+x.x.x.x CUTLER-Hadoop-RM\
+x.x.x.x CUTLER-Hadoop-DN1\
+x.x.x.x CUTLER-Hadoop-DN2\
 x.x.x.x CUTLER-Hadoop-DN3
