@@ -35,6 +35,10 @@ variable "vm_gateway" {
   type = "string"
 }
 
+variable "disk_size" {
+  type = "string"
+}
+
 variable "vm_dns_servers" {
   type = "string"
 }

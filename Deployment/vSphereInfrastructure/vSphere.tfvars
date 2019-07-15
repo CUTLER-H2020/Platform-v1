@@ -14,3 +14,5 @@ vm_network			= "VM Network"
 vm_network_address 	= "<IP ADDR>/24"
 vm_gateway 			= "<IP ADDR>"
 vm_dns_servers 		= "<IP ADDR>,<IP ADDR>"
+
+disk_size			= "64"
