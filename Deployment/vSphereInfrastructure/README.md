@@ -1,4 +1,4 @@
-vSphere VM infrastructure deployment for use in the CUTLER project
+# vSphere VM infrastructure deployment for use in the CUTLER project
 
 Configuration:
 - 12 VMs
