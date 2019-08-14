@@ -1,0 +1,73 @@
+# Baseline configuration of the CUTLER VMs
+
+The following installation/configuration steps were applied to the c1, c2, c3, c4 baseline VM images:
+
+- Updated the resolution to 1440x900
+- sudo apt update
+- sudo apt upgrade
+
+Base packages/tools:
+- sudo apt install net-tools
+- sudo apt install ifupdown
+- sudo mkdir /etc/dhcp3
+- sudo apt install default-jdk
+- sudo apt install python3.6
+- sudo apt install python3-pip
+- sudo apt install python3-pandas
+- sudo apt install python3-bs4
+- sudo apt install python3-dateutil
+- sudo apt install python3-requests
+- sudo apt install python-pip
+- apt install openjdk-11-jdk-headless
+- sudo apt-get install nmap
+- pip install pyexcel-ezodf
+- sudo apt install curl
+- pip3 install -U selenium
+
+Firewall:
+- sudo ufw enable
+- sudo ufw default deny incoming
+- sudo ufw default allow outgoing
+- sudo ufw allow 22
+- sudo ufw allow 80
+- sudo ufw allow 443
+- sudo ufw allow 21/tcp
+
+IPS:
+- sudo apt install fail2ban
+- sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+  - edit the .local file
+  - "5m" ban time
+  - uncomment "enabled = true"
+  - everything else default
+- sudo systemctl restart fail2ban
+
+Add non-root user:
+- sudo adduser cutler-user
+
+Google Chrome:
+- wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+- sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+- sudo apt update
+- sudo apt install google-chrome-stable
+- wget https://chromedriver.storage.googleapis.com/73.0.3683.68/chromedriver_linux64.zip
+- unzip chromedriver_linux64.zip
+- sudo mv chromedriver /usr/bin/
+- chmod +x /usr/bin/chromedriver
+
+GeckoDriver:
+- wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+- tar -xvf geckodriver-v0.24.0-linux64.tar.gz
+- sudo mv geckodriver /bin
+
+Crawlers (for ES nodes):
+- pip3 install virtualenv
+- sudo add-apt-repository ppa:alex-p/tesseract-ocr
+- sudo apt update
+- sudo apt install tesseract-ocr
+- sudo apt install python3-xlrd
+- sudo apt install python3-openpyxl
+ 
+node.js: 
+- curl -s -O https://deb.nodesource.com/node_10.x/pool/main/n/nodejs/nodejs_10.13.0-1nodesource1_amd64.deb
+- sudo dpkg -i nodejs_10.13.0-1nodesource1_amd64.deb
