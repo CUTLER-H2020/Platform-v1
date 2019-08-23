@@ -5,4 +5,3 @@ This playbook installs
 - Flume
 - Elasticsearch
 - Kibana
-- MatLab
