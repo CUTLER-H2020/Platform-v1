@@ -12,7 +12,7 @@
 
 ## Prerequisites
 
-- Ansible management server (install ansible on Ubuntu machine)
+- management server (install ansible on Ubuntu machine)
 - jmespath installed on Ansible management server (install using apt or other)
 - 11 ubuntu machines (4 for Hadoop cluster, 3 for Kafka cluster, 4 for ES cluster)
 - Add hostname of each machine to Ansible server /etc/hosts file (test ping by hostnames)
@@ -20,6 +20,8 @@
 - Generate SSH keys on ansible server and copy to each deployment machine
 - Make sure all machines are accessible via SSH by the Ansible server
 - Test 'ansible all -m ping' command to ensure all hosts are reachable by Ansible server
+- Download this repo, take this directory (containing this README) in your working directory
+- Download hadoop-3.2.0.tar.gz to the this directory
 
 ## Configuration
 The following files must be edited to reflect your environment:
@@ -27,10 +29,9 @@ The following files must be edited to reflect your environment:
 - install-matlab/hosts/host (add IP addresses)
 - install-apache2/install.yml (add ansible host)
 - kafka-ansible/inventory.ini (add IPs to zookeeper_servers, use these same IPs for kafka_servers )
-- Download hadoop-3.2.0.tar.gz to this directory (Ansible directory)
 
 ## Running the playbooks
-The top level of this directory (Ansible folder) contains four shell scripts
+The top level of this directory contains four shell scripts
 - cutler-install-all.sh (installs all clusters)
 - cutler-install-cluster-1.sh (installs Hadoop cluster only)
 - cutler-install-cluster-2.sh (installs Kafka cluster only)
