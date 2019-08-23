@@ -1,4 +1,4 @@
-##Cutler Platform Installation
+# Cutler Platform Installation
 - Install on 64 bit Ubuntu 16.x or higher
 - Hadoop 3.2.0
 - Flume 1.9.0
@@ -10,7 +10,7 @@
 - MatLab R2018a
 - Apache2 2.4
 
-#Prerequisites
+## Prerequisites
 
 - Ansible management server (install ansible on Ubuntu machine)
 - jmespath installed on Ansible management server (install using apt or other)
@@ -21,17 +21,17 @@
 - Make sure all machines are accessible via SSH by the Ansible server
 - Test 'ansible all -m ping' command to ensure all hosts are reachable by Ansible server
 
-#Configuration
+## Configuration
 
 
-#Running the playbooks
+## Running the playbooks
 The top level directory contains four shell scripts
 - cutler-install-all.sh (installs all clusters)
 - cutler-install-cluster-1.sh (installs Hadoop cluster only)
 - cutler-install-cluster-2.sh (installs Kafka cluster only)
 - cutler-install-cluster-3.sh (installs Elasticsearch cluster only)
 
-#Handling issues
+## Handling issues
 - Flume can sometimes throw errors when installing using the shell script, if this happens
   simply change directory to 'hadoop-ansible' and run the install-spark-flume.yml playbook using: 
   ansible-playbook -i hadoop-ansible/hosts/host hadoop-ansible/install-spark-flume.yml
