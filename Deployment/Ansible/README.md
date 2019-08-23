@@ -22,7 +22,11 @@
 - Test 'ansible all -m ping' command to ensure all hosts are reachable by Ansible server
 
 ## Configuration
-
+The following files must be edited to reflect your environment:
+- hadoop-ansible/hosts/host (add IP addresses)
+- install-matlab/hosts/host (add IP addresses)
+- install-apache2/install.yml (add ansible host)
+- kafka-ansible/inventory.ini (add IPs to zookeeper_servers, use these same IPs for kafka_servers )
 
 ## Running the playbooks
 The top level directory contains four shell scripts
@@ -31,12 +35,13 @@ The top level directory contains four shell scripts
 - cutler-install-cluster-2.sh (installs Kafka cluster only)
 - cutler-install-cluster-3.sh (installs Elasticsearch cluster only)
 
+
 ## Handling issues
 - Flume can sometimes throw errors when installing using the shell script, if this happens
   simply change directory to 'hadoop-ansible' and run the install-spark-flume.yml playbook using: 
   ansible-playbook -i hadoop-ansible/hosts/host hadoop-ansible/install-spark-flume.yml
   
-- The timeout clause on the Kafka service has been removed, the service should come up in its own
+- The timeout on 'wait_for_kafka_up' in the Kafka service has been removed, the service should come up in its own
   time, if this does not happen then the service must be started manually on the target machine. The
   scripts to do start Kafka manually are in the bin folder of the Kafka deployment directory.
   
