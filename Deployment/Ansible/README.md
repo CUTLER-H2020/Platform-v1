@@ -27,9 +27,10 @@ The following files must be edited to reflect your environment:
 - install-matlab/hosts/host (add IP addresses)
 - install-apache2/install.yml (add ansible host)
 - kafka-ansible/inventory.ini (add IPs to zookeeper_servers, use these same IPs for kafka_servers )
+- Download hadoop-3.2.0.tar.gz to this directory (Ansible directory)
 
 ## Running the playbooks
-The top level directory contains four shell scripts
+The top level of this directory (Ansible folder) contains four shell scripts
 - cutler-install-all.sh (installs all clusters)
 - cutler-install-cluster-1.sh (installs Hadoop cluster only)
 - cutler-install-cluster-2.sh (installs Kafka cluster only)
