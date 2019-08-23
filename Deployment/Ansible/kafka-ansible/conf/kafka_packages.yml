@@ -1,0 +1,23 @@
+---
+
+kafka_packages:
+  - name: apache-zookeeper
+    version: 3.5.5
+    url: "https://archive.apache.org/dist/zookeeper/zookeeper-3.5.5/apache-zookeeper-3.5.5.tar.gz"
+    checksum: "sha512:4e22df899a83ca3cc15f6d94daadb1a8631fb4108e67b4f56d1f4fcf95f10f89c8ff1fb8a7c84799a3856d8803a8db1e1f2f3fe1b7dc0d6cedf485ef90fd212d"
+  - name: kafka
+    version: 2.12-2.3.0
+    url: "https://archive.apache.org/dist/kafka/2.3.0/kafka_2.12-2.3.0.tgz"
+    checksum: "sha512:A5ED591AB304A1F16F7FD64183871E38AABF814A2C1CA86BB3D064C83E85A6463D3C55F4D707A29FC3D7994DD7BA1F790B5A6219C6DFFDF472AFD99CEE37892E"
+
+
+kafka_under_gfw:
+  - name: apache-zookeeper
+    version: 3.5.5
+    url: "https://archive.apache.org/dist/zookeeper/zookeeper-3.5.5/apache-zookeeper-3.5.5.tar.gz"
+    checksum: "sha512:4e22df899a83ca3cc15f6d94daadb1a8631fb4108e67b4f56d1f4fcf95f10f89c8ff1fb8a7c84799a3856d8803a8db1e1f2f3fe1b7dc0d6cedf485ef90fd212d"
+  - name: kafka
+    version: 2.12-2.3.0
+    url: "https://archive.apache.org/dist/kafka/2.3.0/kafka_2.12-2.3.0.tgz"
+    checksum: "sha512:A5ED591AB304A1F16F7FD64183871E38AABF814A2C1CA86BB3D064C83E85A6463D3C55F4D707A29FC3D7994DD7BA1F790B5A6219C6DFFDF472AFD99CEE37892E"
+

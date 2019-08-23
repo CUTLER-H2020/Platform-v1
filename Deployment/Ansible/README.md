@@ -47,7 +47,7 @@ The top level of this directory contains four shell scripts
   time, if this does not happen then the service must be started manually on the target machine. The
   scripts to do start Kafka manually are in the bin folder of the Kafka deployment directory.
   
-- Several of the playbooks require sudo access; at multiple times a prompt for password
+- Several of the playbooks require sudo access; at mmultiple times a promt for password
   input will appear, meaning that the installation isn't unattended. If an unattended installation is
   require then the occurences of following parameter: '--ask-become-pass', in 'cutler-install-all.sh'
   can be changed to: ' --extra-vars 'ansible_become_pass=password' '. Note that this alternative is

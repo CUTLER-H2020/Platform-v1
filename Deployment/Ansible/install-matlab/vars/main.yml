@@ -1,0 +1,4 @@
+---
+  matlabPackageUri: http://ssd.mathworks.com/supportfiles/downloads/R2018a/deployment_files/R2018a/installers/glnxa64/MCR_R2018a_glnxa64_installer.zip
+  matlabLocalZipPath: /tmp/matlab.zip
+  matlabUnzippedPath: /tmp/matlab

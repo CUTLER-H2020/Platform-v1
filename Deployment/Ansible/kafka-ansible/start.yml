@@ -1,0 +1,63 @@
+---
+# Copyright 2016 PingCAP, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This playbook is intend for one pass execution
+
+- name: check config locally
+  hosts: localhost
+  any_errors_fatal: true
+  tags:
+    - always
+  roles:
+    - check_config_static
+
+- name: initializing deployment target
+  hosts: all
+  any_errors_fatal: true
+  tags:
+    - always
+  roles:
+    - check_config_dynamic
+
+#- hosts: zookeeper_servers
+#  tasks:
+#    - name: start zookeeper
+#      shell: cd {{ deploy_dir }}/scripts && ./run_zookeeper.sh start
+#
+#    - name: wait for start finished
+#      shell: cd {{ deploy_dir }}/scripts && ./run_zookeeper.sh status 
+#      register: result
+#      until: result.stdout.find("follower") != -1 or result.stdout.find("leader") != -1
+#      retries: 10
+#      delay: 15
+#
+#    - name: wait for zookeeper up
+#      wait_for: |
+#        host={{ ansible_host }} port={{ zk_client_port }} state=present
+
+#- hosts: kafka_servers
+#  tasks:
+#    - name: wait zookeeper
+#      pause:
+#          seconds: 6
+
+- hosts: kafka_servers
+  serial: 1
+  tasks:
+    - name: start kafka
+      shell: cd {{ deploy_dir }}/scripts && ./run_kafka.sh start
+
+#    - name: wait for kafka up
+#      wait_for: |
+#        host={{ ansible_host }} port={{ kafka_port }} state=present delay=100

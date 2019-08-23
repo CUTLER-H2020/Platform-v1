@@ -1,0 +1,7 @@
+---
+
+required_ram: 768
+# 100MiB
+minimum_deploy_space: 100000000
+# hard-coded in startup scrips
+min_open_fds: 100000

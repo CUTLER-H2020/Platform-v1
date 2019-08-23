@@ -1,0 +1,5 @@
+---
+master_ip: "10.60.26.66"
+master_hostname: "Cutler-JuJu-Management-Server"
+#rm_ip: "10.60.26.61"
+#rm_hostname: "Cutler-Hadoop-RM"

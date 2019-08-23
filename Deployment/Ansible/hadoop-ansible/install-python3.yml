@@ -1,0 +1,9 @@
+- hosts: master
+  remote_user: root
+  vars_files:
+   - vars/user.yml
+   - vars/var_basic.yml
+   - vars/var_workers.yml
+  vars:
+  roles:
+    - install_python3.5

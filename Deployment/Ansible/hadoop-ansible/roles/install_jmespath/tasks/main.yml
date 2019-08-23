@@ -1,0 +1,24 @@
+---
+- name: Update apt-cache
+  apt: update_cache=yes
+
+- name: Install packages
+  apt: pkg={{ item }}
+  with_items:
+    - wget
+    - xz-utils
+    - build-essential
+    - libsqlite3-dev
+    - libreadline-dev
+    - libssl-dev
+    - openssl
+
+- name: Install
+  shell: apt-get install python-jmespath
+  become: yes
+  become_user: root
+
+#- name: Run pip to install jmespath
+#  raw: pip install jmespath
+#  become: true
+#  become_method: sudo

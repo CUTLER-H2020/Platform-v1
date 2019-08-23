@@ -1,0 +1,39 @@
+---
+- name: Update apt-cache
+  apt: update_cache=yes
+
+- name: Install packages
+  apt: pkg={{ item }}
+  with_items:
+    - wget
+    - xz-utils
+    - build-essential
+    - libsqlite3-dev
+    - libreadline-dev
+    - libssl-dev
+    - openssl
+
+- name: Copy python tar.xz
+  copy: src={{download_path}}/Python-3.7.4.tar.xz dest=/tmp/Python.tar.xz
+
+- name: Extract
+  shell: tar -xf Python.tar.xz chdir=/tmp
+
+- name: Configure
+  shell: ./configure chdir=/tmp/Python-3.7.4
+
+- name: Make
+  shell: make chdir=/tmp/Python-3.7.4
+
+- name: Install
+  shell: make install chdir=/tmp/Python-3.7.4
+  become: yes
+  become_user: root
+
+- name: Remove tmp files
+  file: path={{ item }} state=absent
+  with_items:
+    - /tmp/Python.tar.xz
+    - /tmp/Python-3.7.4
+
+

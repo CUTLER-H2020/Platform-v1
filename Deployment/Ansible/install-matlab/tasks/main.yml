@@ -1,0 +1,48 @@
+---
+  - name: Install unzip for unarchiving
+    apt:
+      name: unzip
+      
+# Added libs for libxt.so.6 issue
+# https://uk.mathworks.com/matlabcentral/answers/102840-why-do-i-get-a-java-error-libxt-so-6-cannot-open-shared-object-file-no-such-file-or-directory-wh
+ 
+
+  - name: Check for MATLAB files
+    stat:
+      path: "{{ matlabDefaultPath }}"
+    register: matlab_files
+
+  - name: Download MATLAB
+    get_url:
+      url: "{{ matlabPackageUri }}"
+      dest: "{{ matlabLocalZipPath }}"
+    when: matlab_files.stat.exists == False
+
+  - name: Create unzip path
+    file:
+      dest: "{{ matlabUnzippedPath }}"
+      state: directory
+    when: matlab_files.stat.exists == False
+
+  - name: Unzip MATLAB
+    unarchive:
+      copy: no
+      src: "{{ matlabLocalZipPath }}"
+      dest: "{{ matlabUnzippedPath }}"
+    when: matlab_files.stat.exists == False
+
+  - name: Install MATLAB
+    command: ./install -mode silent -agreeToLicense yes
+    args:
+      chdir: "{{ matlabUnzippedPath }}"
+      creates: "{{ matlabDefaultPath }}"
+    when: matlab_files.stat.exists == False
+
+  - name: Clean Up
+    file:
+      name: "{{ item }}"
+      state: absent
+    with_items:
+      - "{{ matlabLocalZipPath }}"
+      - "{{ matlabUnzippedPath }}"
+    when: matlab_files.stat.exists == False

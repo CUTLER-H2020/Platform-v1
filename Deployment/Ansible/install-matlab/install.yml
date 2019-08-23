@@ -1,0 +1,7 @@
+- hosts: Cutler-ES-1
+  become: True
+  tasks:
+    - include: 'tasks/main.yml'
+  vars_files:
+    - 'defaults/main.yml'
+    - 'vars/main.yml'
