@@ -6,7 +6,7 @@ The purpose of this software is to install the CUTLER platform, including infras
 
 ### Ansible Services
 
-The Ansible automation tool is used to install the following services: Apache2, Hadoop, Flume, Spark, Kafka, Zookeeper, Elasticsearch, Kibana, MatLab. More detail can be found in the [Ansible](Platform-v1/Deployment/Ansible/) directory
+The Ansible automation tool is used to install the following services: Apache2, Hadoop, Flume, Spark, Kafka, Zookeeper, Elasticsearch, Kibana, MatLab. More detail can be found in the [Ansible](/Platform-v1/Deployment/Ansible/) directory
 
 ### Ubuntu Base Image
 
