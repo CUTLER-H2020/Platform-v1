@@ -1,6 +1,6 @@
 # Platform-v1
 
-The purpose of this software is to install the complete CUTLER platform, including infrastructure, dependencies and services. This readme offers an overview, with more detail being contained in the readme files in the subdirectories.
+The purpose of this software is to install the CUTLER platform, including infrastructure, dependencies and services. This readme offers an overview, with more detail being contained in the readme files in the subdirectories.
 
 ## Deployment
 
