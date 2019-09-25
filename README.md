@@ -2,6 +2,8 @@
 
 The purpose of this software is to install the CUTLER platform, including infrastructure, dependencies and services. This readme offers an overview, with more detail on specific components being contained in the readme files in the subdirectories.
 
+A user manual for automated CUTLER cloud deployment can be found at the project website in this [link](https://www.cutler-h2020.eu/download/671).
+
 ## Deployment
 
 ### Ansible Services
